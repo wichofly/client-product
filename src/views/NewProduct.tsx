@@ -4,6 +4,7 @@ import {
   useActionData,
   type ActionFunctionArgs,
 } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import ErrorMessage from '../components/ErrorMessage';
 import { addProduct } from '../services/ProductService';
 
@@ -14,18 +15,40 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   if (Object.values(data).includes('')) {
     error = 'All fields are required';
   }
+
   if (error.length) {
-    return error;
+    return { message: error };
   }
 
-  addProduct(data);
+  addProduct(data)
 
-  return '';
+  return {};
 };
 
 const NewProduct = () => {
-  const error = useActionData() as string;
-  console.log(error);
+  const actionData = useActionData() as { message?: string };
+  const [visibleError, setVisibleError] = useState<string | null>(null);
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    if (actionData?.message) {
+      setVisibleError(actionData.message);
+      setShow(true);
+
+      const timeout = setTimeout(() => {
+        setShow(false);
+      }, 4000);
+
+      const remove = setTimeout(() => {
+        setVisibleError(null);
+      }, 5000);
+
+      return () => {
+        clearTimeout(timeout);
+        clearTimeout(remove);
+      };
+    }
+  }, [actionData]);
 
   return (
     <>
@@ -39,7 +62,9 @@ const NewProduct = () => {
         </Link>
       </div>
 
-      {error && <ErrorMessage>{error}</ErrorMessage>}
+      {visibleError && (
+        <ErrorMessage visible={show}>{visibleError}</ErrorMessage>
+      )}
 
       <Form method="POST" className="mt-10">
         <div className="mb-4">
@@ -55,7 +80,7 @@ const NewProduct = () => {
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="name" className="text-slate-800">
+          <label htmlFor="price" className="text-slate-800">
             Price:
           </label>
           <input
