@@ -5,6 +5,7 @@ import {
   type ActionFunctionArgs,
 } from 'react-router-dom';
 import ErrorMessage from '../components/ErrorMessage';
+import { addProduct } from '../services/ProductService';
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const data = Object.fromEntries(await request.formData());
@@ -16,6 +17,8 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   if (error.length) {
     return error;
   }
+
+  addProduct(data);
 
   return '';
 };
