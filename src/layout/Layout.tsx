@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 const Layout = () => {
   return (
     <>
-      <header className="bg-gray-200">
+      <header className="bg-gray-200 shadow">
         <div className="mx-auto max-w-6xl py-10">
           <div className="text-4xl font-semibold text-sky-700">
             Product Administration
