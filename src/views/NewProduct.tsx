@@ -1,4 +1,9 @@
-import { Form, Link, useActionData, type ActionFunctionArgs } from 'react-router-dom';
+import {
+  Form,
+  Link,
+  useActionData,
+  type ActionFunctionArgs,
+} from 'react-router-dom';
 import ErrorMessage from '../components/ErrorMessage';
 
 export const action = async ({ request }: ActionFunctionArgs) => {
@@ -12,8 +17,9 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     return error;
   }
 
-  return {};
+  return '';
 };
+
 const NewProduct = () => {
   const error = useActionData() as string;
   console.log(error);
