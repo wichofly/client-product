@@ -1,6 +1,10 @@
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
+import ProductDetails from '../components/ProductDetails';
+import type { Product } from '../types';
 
 const Products = () => {
+  const products = useLoaderData() as Product[];
+
   return (
     <>
       <div className="flex justify-between">
@@ -11,6 +15,24 @@ const Products = () => {
         >
           Add Product
         </Link>
+      </div>
+
+      <div className="p-2">
+        <table className="w-full mt-5 table-auto">
+          <thead className="bg-slate-500 text-white">
+            <tr>
+              <th className="p-2">Product</th>
+              <th className="p-2">Price</th>
+              <th className="p-2">Availability</th>
+              <th className="p-2">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {products.map((product) => (
+              <ProductDetails key={product.id} product={product} />
+            ))}
+          </tbody>
+        </table>
       </div>
     </>
   );

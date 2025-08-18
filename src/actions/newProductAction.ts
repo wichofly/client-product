@@ -1,7 +1,7 @@
 import { redirect, type ActionFunctionArgs } from 'react-router-dom';
 import { addProduct } from '../services/ProductService';
 
-export const action = async ({ request }: ActionFunctionArgs) => {
+export const newProductAction = async ({ request }: ActionFunctionArgs) => {
   const data = Object.fromEntries(await request.formData());
 
   let error = '';
