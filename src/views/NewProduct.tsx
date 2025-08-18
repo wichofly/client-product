@@ -1,6 +1,7 @@
 import {
   Form,
   Link,
+  redirect,
   useActionData,
   type ActionFunctionArgs,
 } from 'react-router-dom';
@@ -17,22 +18,22 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   }
 
   if (error.length) {
-    return { message: error };
+    return error;
   }
 
-  addProduct(data)
+  await addProduct(data);
 
-  return {};
+  return redirect('/');
 };
 
 const NewProduct = () => {
-  const actionData = useActionData() as { message?: string };
+  const error = useActionData() as string;
   const [visibleError, setVisibleError] = useState<string | null>(null);
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    if (actionData?.message) {
-      setVisibleError(actionData.message);
+    if (error) {
+      setVisibleError(error);
       setShow(true);
 
       const timeout = setTimeout(() => {
@@ -48,7 +49,7 @@ const NewProduct = () => {
         clearTimeout(remove);
       };
     }
-  }, [actionData]);
+  }, [error]);
 
   return (
     <>
