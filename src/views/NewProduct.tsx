@@ -1,30 +1,10 @@
+import { useEffect, useState } from 'react';
 import {
   Form,
   Link,
-  redirect,
-  useActionData,
-  type ActionFunctionArgs,
+  useActionData
 } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import ErrorMessage from '../components/ErrorMessage';
-import { addProduct } from '../services/ProductService';
-
-export const action = async ({ request }: ActionFunctionArgs) => {
-  const data = Object.fromEntries(await request.formData());
-
-  let error = '';
-  if (Object.values(data).includes('')) {
-    error = 'All fields are required';
-  }
-
-  if (error.length) {
-    return error;
-  }
-
-  await addProduct(data);
-
-  return redirect('/');
-};
 
 const NewProduct = () => {
   const error = useActionData() as string;
