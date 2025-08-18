@@ -18,6 +18,7 @@ export const addProduct = async (data: ProductData) => {
         name: result.output.name,
         price: result.output.price,
       });
+      console.log(data);
     } else {
       throw new Error('Not valid Data');
     }
