@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import type { Product } from '../types';
 import { formatCurrency } from '../utils';
 
@@ -7,6 +7,8 @@ type ProductDetailsProps = {
 };
 
 const ProductDetails = ({ product }: ProductDetailsProps) => {
+  const navigate = useNavigate();
+
   const isAvailable = product.availability;
   return (
     <tr className="border-b">
@@ -27,18 +29,18 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
       </td>
       <td className="p-3 text-lg">
         <div className="flex gap-2 items-center text-center">
-          <Link
-            to={`editProduct/${product.id}`}
-            className="bg-sky-50 text-sky-700 rounded-md w-full p-2 uppercase font-medium inset-ring inset-ring-sky-600/20"
+          <button
+            onClick={() => navigate(`editProduct/${product.id}`)}
+            className="bg-sky-50 text-sky-700 rounded-md w-full p-2 uppercase font-medium cursor-pointer inset-ring inset-ring-sky-600/20"
           >
             Edit
-          </Link>
-          <Link
-            to={`deleteProduct/${product.id}`}
-            className="bg-rose-50 text-rose-700 rounded-md w-full p-2 uppercase font-medium inset-ring inset-ring-rose-600/20"
+          </button>
+          <button
+            onClick={() => navigate(`deleteProduct/${product.id}`)}
+            className="bg-rose-50 text-rose-700 rounded-md w-full p-2 uppercase font-medium cursor-pointer inset-ring inset-ring-rose-600/20"
           >
             Delete
-          </Link>
+          </button>
         </div>
       </td>
     </tr>
