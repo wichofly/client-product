@@ -1,9 +1,5 @@
 import { useEffect, useState } from 'react';
-import {
-  Form,
-  Link,
-  useActionData
-} from 'react-router-dom';
+import { Form, Link, useActionData } from 'react-router-dom';
 import ErrorMessage from '../components/ErrorMessage';
 
 const NewProduct = () => {
@@ -67,8 +63,10 @@ const NewProduct = () => {
           <input
             id="price"
             type="number"
+            step="0.01"
+            min="0"
             className="mt-2 block w-full p-3 bg-gray-100 rounded-md"
-            placeholder="Price of Product. e.g. 19"
+            placeholder="Price of Product. e.g. 19, 12.90"
             name="price"
           />
         </div>
