@@ -19,6 +19,6 @@ export const ProductSchema = object({
   availability: boolean(),
 });
 
-export const ProductsSchema = array(ProductSchema);
+export const ProductsSchema = array(ProductSchema); // This is an array of products
 
-export type Product = InferOutput<typeof ProductSchema>;
+export type Product = InferOutput<typeof ProductSchema>; // This is a single product type

@@ -6,6 +6,7 @@ import NewProduct from './views/NewProduct';
 import { newProductAction } from './actions/newProductAction';
 import EditProduct from './views/EditProduct';
 import editProductLoader from './loaders/editProductLoader';
+import { editProductAction } from './actions/editProductAction';
 
 export const router = createBrowserRouter([
   {
@@ -26,6 +27,7 @@ export const router = createBrowserRouter([
         path: 'editProduct/:id', // ROAD Pattern: Resource-Oriented Architecture Design
         element: <EditProduct />,
         loader: editProductLoader,
+        action: editProductAction,
       },
     ],
   },
