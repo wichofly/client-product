@@ -62,6 +62,15 @@ export const getProductById = async (id: Product['id']) => {
 };
 
 export const updateProduct = async (data: ProductData, id: Product['id']) => {
-  console.log(data);
-  console.log(id);
+  try {
+    const result = safeParse(ProductSchema, {
+      id,
+      name: data.name,
+      price: +data.price,
+      availability: data.availability === 'true', // Convert string to boolean
+    });
+    console.log(result);
+  } catch (error) {
+    console.log(error);
+  }
 };
