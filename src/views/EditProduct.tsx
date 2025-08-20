@@ -3,6 +3,11 @@ import { Form, Link, useActionData, useLoaderData } from 'react-router-dom';
 import ErrorMessage from '../components/ErrorMessage';
 import type { Product } from '../types';
 
+const availabilityOptions = [
+  { name: 'Available', value: true },
+  { name: 'Not Available', value: false },
+];
+
 const EditProduct = () => {
   const product = useLoaderData() as Product;
   const error = useActionData() as string;
@@ -73,6 +78,24 @@ const EditProduct = () => {
             name="price"
             defaultValue={product.price}
           />
+        </div>
+
+        <div className="mb-4">
+          <label htmlFor="availability" className="text-slate-800">
+            Availability:
+          </label>
+          <select
+            id="availability"
+            name="availability"
+            className="mt-2 block w-full p-3 bg-gray-100 rounded-md"
+            defaultValue={product?.availability.toString()}
+          >
+            {availabilityOptions.map((option) => (
+              <option key={option.name} value={option.value.toString()}>
+                {option.name}
+              </option>
+            ))}
+          </select>
         </div>
 
         <input
