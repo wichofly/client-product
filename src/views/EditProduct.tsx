@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Form, Link, useActionData, useLoaderData } from 'react-router-dom';
 import ErrorMessage from '../components/ErrorMessage';
 import type { Product } from '../types';
+import ProductForm from '../components/ProductForm';
 
 const availabilityOptions = [
   { name: 'Available', value: true },
@@ -51,34 +52,7 @@ const EditProduct = () => {
       )}
 
       <Form method="POST" className="mt-10">
-        <div className="mb-4">
-          <label htmlFor="name" className="text-slate-800">
-            Name of Product:
-          </label>
-          <input
-            id="name"
-            type="text"
-            className="mt-2 block w-full p-3 bg-gray-100 rounded-md"
-            placeholder="Name of Product"
-            name="name"
-            defaultValue={product.name}
-          />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="price" className="text-slate-800">
-            Price:
-          </label>
-          <input
-            id="price"
-            type="number"
-            step="0.01"
-            min="0"
-            className="mt-2 block w-full p-3 bg-gray-100 rounded-md"
-            placeholder="Price of Product. e.g. 19, 12.90"
-            name="price"
-            defaultValue={product.price}
-          />
-        </div>
+        <ProductForm product={product} />
 
         <div className="mb-4">
           <label htmlFor="availability" className="text-slate-800">
@@ -101,7 +75,7 @@ const EditProduct = () => {
         <input
           type="submit"
           className="mt-5 w-full rounded-md bg-cyan-600 p-3 text-lg text-white font-semibold shadow cursor-pointer hover:bg-cyan-700 transition duration-200"
-          value="Edit Product"
+          value="Save Product"
         />
       </Form>
     </>
