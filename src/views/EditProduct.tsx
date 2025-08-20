@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Form, Link, useActionData } from 'react-router-dom';
+import { Form, Link, useActionData, useLocation } from 'react-router-dom';
 import ErrorMessage from '../components/ErrorMessage';
 
 const EditProduct = () => {
   const error = useActionData() as string;
+  const { state } = useLocation();
+  console.log(state);
+
   const [visibleError, setVisibleError] = useState<string | null>(null);
   const [show, setShow] = useState(false);
 
@@ -54,6 +57,7 @@ const EditProduct = () => {
             className="mt-2 block w-full p-3 bg-gray-100 rounded-md"
             placeholder="Name of Product"
             name="name"
+            defaultValue={state.name}
           />
         </div>
         <div className="mb-4">
@@ -68,6 +72,7 @@ const EditProduct = () => {
             className="mt-2 block w-full p-3 bg-gray-100 rounded-md"
             placeholder="Price of Product. e.g. 19, 12.90"
             name="price"
+            defaultValue={state.price} 
           />
         </div>
 

@@ -32,7 +32,9 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
       <td className="p-3 text-lg">
         <div className="flex gap-2 items-center">
           <button
-            onClick={() => navigate(`editProduct/${product.id}`)}
+            onClick={() =>
+              navigate(`editProduct/${product.id}`, { state: product })
+            }
             className="flex items-center gap-2 bg-sky-50 text-sky-700 rounded-md w-full px-2 py-1 uppercase font-medium cursor-pointer hover:bg-sky-100 transition duration-300 ease-in-out"
           >
             <FaEdit className="text-sky-600" /> Edit
