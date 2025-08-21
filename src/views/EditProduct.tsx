@@ -51,7 +51,7 @@ const EditProduct = () => {
         <ErrorMessage visible={show}>{visibleError}</ErrorMessage>
       )}
 
-      <Form method="POST" className="mt-10">
+      <Form method="post" className="mt-10">
         <ProductForm product={product} />
 
         <div className="mb-4">
