@@ -22,8 +22,8 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
         <span
           className={`inline-flex items-center rounded-md px-2 py-1 text-lg font-medium ${
             isAvailable
-              ? 'bg-green-50 text-green-700 inset-ring inset-ring-green-600/20'
-              : 'bg-rose-50 text-rose-700 inset-ring inset-ring-rose-600/10'
+              ? 'bg-green-50 text-green-700 ring-1 ring-inset ring-green-600/20'
+              : 'bg-rose-50 text-rose-700 ring-1 ring-inset ring-rose-600/10'
           }`}
         >
           {isAvailable ? 'Available' : 'Not Available'}
@@ -35,7 +35,7 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
             onClick={() => navigate(`editProduct/${product.id}`)}
             className="flex items-center gap-2 text-sky-700 border border-sky-300 rounded-md w-full px-2 py-1 uppercase font-medium cursor-pointer hover:bg-sky-100 transition duration-300 ease-in-out"
           >
-            <FaEdit className="text-sky-600" /> Edit
+            <FaEdit aria-hidden="true" className="text-sky-600" /> Edit
           </button>
 
           <Form
@@ -49,7 +49,7 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
             }}
           >
             <button className="flex items-center gap-2 text-pink-700 border border-pink-300 rounded-md w-full px-2 py-1 uppercase font-medium cursor-pointer hover:bg-pink-100 transition duration-300 ease-in-out">
-              <FaTrash className="text-pink-600" /> Delete
+              <FaTrash aria-hidden="true" className="text-pink-600" /> Delete
             </button>
           </Form>
         </div>
