@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Form, useNavigate } from 'react-router-dom';
 import type { Product } from '../types';
 import { formatCurrency } from '../utils';
 import { FaEdit, FaTrash } from 'react-icons/fa';
@@ -33,17 +33,23 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
         <div className="flex gap-2 items-center">
           <button
             onClick={() => navigate(`editProduct/${product.id}`)}
-            className="flex items-center gap-2 bg-sky-50 text-sky-700 rounded-md w-full px-2 py-1 uppercase font-medium cursor-pointer hover:bg-sky-100 transition duration-300 ease-in-out"
+            className="flex items-center gap-2 text-sky-700 border border-sky-300 rounded-md w-full px-2 py-1 uppercase font-medium cursor-pointer hover:bg-sky-100 transition duration-300 ease-in-out"
           >
             <FaEdit className="text-sky-600" /> Edit
           </button>
 
-          <button
-            onClick={() => navigate(`deleteProduct/${product.id}`)}
-            className="flex items-center gap-2 bg-pink-50 text-pink-700 rounded-md w-full px-2 py-1 uppercase font-medium cursor-pointer hover:bg-pink-100 transition duration-300 ease-in-out"
+          <Form
+            method="POST"
+            action={`deleteProduct/${product.id}`}
+            className="w-full"
           >
-            <FaTrash className="text-pink-600" /> Delete
-          </button>
+            <button
+              onClick={() => navigate(`deleteProduct/${product.id}`)}
+              className="flex items-center gap-2 text-pink-700 border border-pink-300 rounded-md w-full px-2 py-1 uppercase font-medium cursor-pointer hover:bg-pink-100 transition duration-300 ease-in-out"
+            >
+              <FaTrash className="text-pink-600" /> Delete
+            </button>
+          </Form>
         </div>
       </td>
     </tr>
