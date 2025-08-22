@@ -57,7 +57,7 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
             }}
           >
             <button
-              type="button"
+              type="submit"
               name="delete"
               className="flex items-center gap-2 text-pink-700 border border-pink-300 rounded-md w-full px-2 py-1 uppercase font-medium cursor-pointer hover:bg-pink-100 transition duration-300 ease-in-out"
             >
