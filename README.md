@@ -53,3 +53,7 @@ The application integrates **Valibot**, a runtime schema validation library that
 - Strictly typed, improving type inference and error resilience
 
 Schemas like `ProductSchema` and `ProductsSchema` are used before POST/PUT requests to verify all fields are present and correct.
+
+## Deployment
+
+Project deployed at Vercel: [client-product](https://client-product-six.vercel.app/)
