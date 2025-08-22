@@ -7,6 +7,8 @@ import { newProductAction } from './actions/newProductAction';
 import EditProduct from './views/EditProduct';
 import editProductLoader from './loaders/editProductLoader';
 import { editProductAction } from './actions/editProductAction';
+import { deleteProductAction } from './actions/deleteProductAction';
+import { updateAvailabilityAction } from './actions/updateAvailabilityAction';
 
 export const router = createBrowserRouter([
   {
@@ -17,6 +19,7 @@ export const router = createBrowserRouter([
         index: true,
         element: <Products />,
         loader: productsLoader,
+        action: updateAvailabilityAction,
       },
       {
         path: 'newProduct',
@@ -28,6 +31,10 @@ export const router = createBrowserRouter([
         element: <EditProduct />,
         loader: editProductLoader,
         action: editProductAction,
+      },
+      {
+        path: 'deleteProduct/:id',
+        action: deleteProductAction,
       },
     ],
   },

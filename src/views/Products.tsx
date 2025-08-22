@@ -7,7 +7,7 @@ const Products = () => {
 
   return (
     <>
-      <div className="flex justify-between">
+      <div className="flex justify-between p-2">
         <h2 className="text-4xl text-slate-800 font-semibold">Products</h2>
         <Link
           to="newProduct"
@@ -19,7 +19,7 @@ const Products = () => {
 
       <div className="p-2">
         <table className="w-full mt-5 table-auto">
-          <thead className="bg-slate-500 text-white">
+          <thead className="bg-slate-500 text-white text-2xl">
             <tr>
               <th className="p-2">Product</th>
               <th className="p-2">Price</th>
