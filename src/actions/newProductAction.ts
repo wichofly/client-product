@@ -1,5 +1,6 @@
 import { redirect, type ActionFunctionArgs } from 'react-router-dom';
 import { addProduct } from '../services/ProductService';
+import toast from 'react-hot-toast';
 
 export const newProductAction = async ({ request }: ActionFunctionArgs) => {
   const data = Object.fromEntries(await request.formData());
@@ -14,6 +15,7 @@ export const newProductAction = async ({ request }: ActionFunctionArgs) => {
   }
 
   await addProduct(data);
+  toast.success('Product added successfully');
 
   return redirect('/');
 };

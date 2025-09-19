@@ -2,6 +2,7 @@ import { redirect, type ActionFunction } from 'react-router-dom';
 import { safeParse } from 'valibot';
 import { LoginSchema } from '../types/auth';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 export const loginAction: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
@@ -24,6 +25,7 @@ export const loginAction: ActionFunction = async ({ request }) => {
     if (!token) return { formError: 'Login failed. No token received.' };
 
     localStorage.setItem('token', token);
+    toast.success(`Login successful ${parsed.output.email}`, { duration: 4000 });
 
     return redirect('/');
   } catch (error) {

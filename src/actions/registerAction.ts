@@ -1,4 +1,4 @@
-import type { ActionFunctionArgs } from 'react-router-dom';
+import { redirect, type ActionFunctionArgs } from 'react-router-dom';
 import { RegisterSchema } from '../types/auth';
 import { safeParse } from 'valibot';
 import axios from 'axios';
@@ -27,7 +27,7 @@ export const registerAction = async ({ request }: ActionFunctionArgs) => {
     if (resp.status !== 201)
       return { formError: 'Unexpected response from server' };
 
-    return { successMessage: 'Registration successful! Please log in.' };
+    return redirect('/login');
   } catch (error) {
     if (axios.isAxiosError(error)) {
       const serverMessage = error.response?.data?.error || 'Register failed';
