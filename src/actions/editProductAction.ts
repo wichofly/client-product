@@ -1,5 +1,6 @@
 import { redirect, type ActionFunctionArgs } from 'react-router-dom';
 import { updateProduct } from '../services/ProductService';
+import toast from 'react-hot-toast';
 
 export const editProductAction = async ({
   request,
@@ -18,6 +19,7 @@ export const editProductAction = async ({
 
   if (params.id !== undefined) {
     await updateProduct(data, +params.id); // Ensure id is a number
+    toast.success('Product updated successfully');
 
     return redirect('/');
   }
