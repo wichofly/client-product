@@ -21,11 +21,15 @@ export const loginAction: ActionFunction = async ({ request }) => {
       password: parsed.output.password,
     });
 
-    const token = resp.data?.data?.token;
-    if (!token) return { formError: 'Login failed. No token received.' };
+    const token = resp.data?.data?.token; // Adjust based on the API response structure
+    const user = resp.data?.data?.user;
+
+    if (!token || !user.name)
+      return { formError: 'Login failed. No token received.' };
 
     localStorage.setItem('token', token);
-    toast.success(`Login successful ${parsed.output.email}`, {
+    localStorage.setItem('username', user.name);
+    toast.success(`Welcome ${user.name}!`, {
       duration: 4000,
     });
 

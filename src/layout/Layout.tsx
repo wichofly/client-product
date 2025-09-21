@@ -3,10 +3,11 @@ import { Outlet, useNavigate } from 'react-router-dom';
 
 const Layout = () => {
   const navigate = useNavigate();
+  const username = localStorage.getItem('username');
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    toast.success('Logout successful', { duration: 4000 });
+    toast.success(`Bye ${username}!`, { duration: 4000 });
     setTimeout(() => {
       navigate('/login');
     }, 1500);
@@ -18,7 +19,8 @@ const Layout = () => {
       <header className="bg-gray-200 shadow">
         <div className="mx-auto max-w-6xl py-10 px-2 flex justify-between items-center">
           <div className="text-4xl font-semibold text-sky-700">
-            Product Administration
+            Product Administration by{' '}
+            <span className="capitalize underline">{username}</span>
           </div>
 
           <button
