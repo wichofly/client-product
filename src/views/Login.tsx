@@ -1,7 +1,9 @@
 import { useEffect, useRef } from 'react';
+import toast from 'react-hot-toast';
 import {
   Form,
   useActionData,
+  useLocation,
   useNavigate,
   useNavigation,
 } from 'react-router-dom';
@@ -16,6 +18,21 @@ const Login = () => {
   const navigation = useNavigation();
   const navigate = useNavigate();
   const formRef = useRef<HTMLFormElement>(null);
+  const location = useLocation();
+
+  // Show toast notification if registered successfully
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    if (params.get('registered') === '1') {
+      toast.success('Registration successful! Please log in.');
+
+      // Cleanup the URL to avoid duplicate toasts on refresh
+      const newParams = new URLSearchParams(location.search);
+      newParams.delete('registered');
+      const newUrl = `${location.pathname}?${newParams.toString()}`;
+      window.history.replaceState({}, '', newUrl);
+    }
+  }, [location]);
 
   // manually reset the form field after a successful login
   useEffect(() => {

@@ -22,12 +22,13 @@ export const registerAction = async ({ request }: ActionFunctionArgs) => {
         name: parsed.output.name,
         email: parsed.output.email,
         password: parsed.output.password,
-      }
+      },
     );
+
     if (resp.status !== 201)
       return { formError: 'Unexpected response from server' };
 
-    return redirect('/login');
+    return redirect('/login?registered=1');
   } catch (error) {
     if (axios.isAxiosError(error)) {
       const serverMessage = error.response?.data?.error || 'Register failed';

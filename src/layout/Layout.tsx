@@ -15,7 +15,7 @@ const Layout = () => {
 
   return (
     <>
-      <Toaster position="top-center" />
+      <Toaster position="top-right" />
       <header className="bg-gray-200 shadow">
         <div className="mx-auto max-w-6xl py-10 px-2 flex justify-between items-center">
           <div className="text-4xl font-semibold text-sky-700">
