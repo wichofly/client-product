@@ -11,6 +11,10 @@ type ProductData = {
   [k: string]: FormDataEntryValue;
 };
 
+const api = axios.create({
+  baseURL: `${import.meta.env.VITE_API_URL}/api`,
+});
+
 export const addProduct = async (data: ProductData) => {
   try {
     const result = safeParse(DraftProductSchema, {
@@ -18,8 +22,7 @@ export const addProduct = async (data: ProductData) => {
       price: +data.price,
     });
     if (result.success) {
-      const url = `${import.meta.env.VITE_API_URL}/api/products`;
-      await axios.post(url, {
+      await api.post('/products', {
         name: result.output.name,
         price: result.output.price,
       });
@@ -33,8 +36,7 @@ export const addProduct = async (data: ProductData) => {
 
 export const getProducts = async () => {
   try {
-    const url = `${import.meta.env.VITE_API_URL}/api/products`;
-    const { data } = await axios(url);
+    const { data } = await api.get('/products');
     const result = safeParse(ProductsSchema, data.data);
     if (result.success) {
       return result.output;
@@ -48,8 +50,7 @@ export const getProducts = async () => {
 
 export const getProductById = async (id: Product['id']) => {
   try {
-    const url = `${import.meta.env.VITE_API_URL}/api/products/${id}`;
-    const { data } = await axios(url);
+    const { data } = await api.get(`/products/${id}`);
     const result = safeParse(ProductSchema, data.data);
     if (result.success) {
       return result.output;
@@ -71,8 +72,7 @@ export const updateProduct = async (data: ProductData, id: Product['id']) => {
     });
 
     if (result.success) {
-      const url = `${import.meta.env.VITE_API_URL}/api/products/${id}`;
-      await axios.put(url, result.output);
+      await api.put(`/products/${id}`, result.output);
     }
   } catch (error) {
     console.log(error);
@@ -81,8 +81,7 @@ export const updateProduct = async (data: ProductData, id: Product['id']) => {
 
 export const updateProductAvailability = async (id: Product['id']) => {
   try {
-    const url = `${import.meta.env.VITE_API_URL}/api/products/${id}`;
-    await axios.patch(url);
+    await api.patch(`/products/${id}`);
   } catch (error) {
     console.log(error);
   }
@@ -90,8 +89,7 @@ export const updateProductAvailability = async (id: Product['id']) => {
 
 export const deleteProduct = async (id: Product['id']) => {
   try {
-    const url = `${import.meta.env.VITE_API_URL}/api/products/${id}`;
-    await axios.delete(url);
+    await api.delete(`/products/${id}`);
   } catch (error) {
     console.log(error);
   }
