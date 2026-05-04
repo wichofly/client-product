@@ -7,6 +7,7 @@ import {
   useNavigate,
   useNavigation,
 } from 'react-router-dom';
+import Navbar from './Navbar';
 
 type ActionResponse = {
   formError?: string;
@@ -43,9 +44,8 @@ const Login = () => {
 
   return (
     <div className="flex flex-col items-center min-h-screen p-4">
-      <h1 className="text-4xl font-semibold mt-4 text-sky-700">
-        Welcome to Product Administration
-      </h1>
+      <Navbar />
+
       <h1 className="text-2xl font-semibold mt-4 mb-8 text-center">Login</h1>
 
       {actionData?.formError && (

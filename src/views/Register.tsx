@@ -4,6 +4,7 @@ import {
   useNavigate,
   useNavigation,
 } from 'react-router-dom';
+import Navbar from './Navbar';
 
 const Register = () => {
   const actionData = useActionData<{
@@ -15,9 +16,8 @@ const Register = () => {
 
   return (
     <div className="flex flex-col items-center min-h-screen p-4">
-      <h1 className="text-4xl font-semibold mt-4 text-sky-700">
-        Welcome to Product Administration
-      </h1>
+      <Navbar />
+
       <h1 className="text-2xl font-semibold mt-4 mb-8 text-center">Register</h1>
 
       {actionData?.formError && (
