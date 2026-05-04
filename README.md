@@ -37,7 +37,7 @@ Recent updates introduce user authentication and protected routing:
 
 Utilizes React Router's data API for route-specific logic:
 
-```
+```ts
 /                     -> Products (list)
   ├─ loader: productsLoader          (GET /api/products)
   └─ action: updateAvailabilityAction (PATCH /api/products/:id via fetcher)
