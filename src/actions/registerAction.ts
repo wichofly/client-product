@@ -2,6 +2,7 @@ import { redirect, type ActionFunctionArgs } from 'react-router-dom';
 import { RegisterSchema } from '../types/auth';
 import { safeParse } from 'valibot';
 import axios from 'axios';
+import { api } from '../services/api';
 
 export const registerAction = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData();
@@ -16,14 +17,11 @@ export const registerAction = async ({ request }: ActionFunctionArgs) => {
   }
 
   try {
-    const resp = await axios.post(
-      `${import.meta.env.VITE_API_URL}/api/register`,
-      {
-        name: parsed.output.name,
-        email: parsed.output.email,
-        password: parsed.output.password,
-      },
-    );
+    const resp = await api.post('/register', {
+      name: parsed.output.name,
+      email: parsed.output.email,
+      password: parsed.output.password,
+    });
 
     if (resp.status !== 201)
       return { formError: 'Unexpected response from server' };

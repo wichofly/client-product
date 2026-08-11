@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { safeParse } from 'valibot';
 import {
   DraftProductSchema,
@@ -6,14 +5,11 @@ import {
   ProductsSchema,
   type Product,
 } from '../types';
+import { api } from './api';
 
 type ProductData = {
   [k: string]: FormDataEntryValue;
 };
-
-const api = axios.create({
-  baseURL: `${import.meta.env.VITE_API_URL}/api`,
-});
 
 export const addProduct = async (data: ProductData) => {
   try {
